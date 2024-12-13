@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let Me Design Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide-icons@0.215.0/dist/index.umd.js"></script>
+  <style>
+    /* Custom CSS */
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .brand {
+      font-size: 1.5rem;
+      color: #1d4ed8;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      width: 40px; /* Adjust the size of the logo */
+      height: 40px;
+      margin-left: 10px; /* Space between text and logo */
+    }
+
+    .navbar a {
+      color: #1d4ed8;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .navbar .button {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar .button:hover {
+      background-color: #2563eb;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://via.placeholder.com/1600x900?text=Hero+Image+1');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero .button-group button {
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero .button-group button:first-child {
+      background-color: white;
+      color: #2563eb;
+    }
+
+    .hero .button-group button:first-child:hover {
+      background-color: #f3f4f6;
+    }
+
+    .hero .button-group button:last-child {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    .hero .button-group button:last-child:hover {
+      background-color: #1e40af;
+    }
+
+    /* About Section */
+    .about {
+      padding: 4rem 1rem;
+      text-align: center;
+      background-color: #f9fafb;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about p {
+      font-size: 1rem;
+      color: #4b5563;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 4rem 1rem;
+      background-color: #f3f4f6;
+    }
+
+    .services .service-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    }
+
+    .services .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .services .service-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .services .service-card p {
+      font-size: 1rem;
+      color: #4b5563;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: 4rem 1rem;
+    }
+
+    .portfolio .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio .project-card:hover {
+      transform: scale(1.05);
+    }
+
+    .portfolio img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .portfolio .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio .project-card:hover .overlay {
+      opacity: 1;
+    }
+
+    .portfolio .overlay span {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1f2937;
+      color: white;
+      padding: 3rem 1rem;
+    }
+
+    footer h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    footer .social-icons a {
+      margin-right: 1rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    footer .social-icons a:hover {
+      color: #3b82f6;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar .button {
+        margin-top: 1rem;
+      }
+
+      .mobile-menu {
+        background-color: white;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+        color: #1d4ed8;
+        text-decoration: none;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="brand">
+        <span>Let Me Design</span>
+        <!-- Add your logo here -->
+        <img src="https://via.placeholder.com/40" alt="Logo" class="logo"> <!-- Replace with your logo image URL -->
+      </div>
+
+      <div class="navbar-links">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <button onclick="window.open('https://wa.me/+1234567890', '_blank')" class="button">Contact</button>
+      </div>
+
+      <button onclick="toggleMobileMenu()" class="menu-button">
+        <svg id="menu-icon" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M3 5h18M3 12h18M3 19h18"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home" class="hero">
+    <div class="image"></div>
+    <div class="content">
+      <h1>Transforming Spaces, Elevating Lifestyles</h1>
+      <div class="button-group">
+        <button>Explore Portfolio</button>
+        <button onclick="window.open('https://wa.me/+1234567890', '_blank')">Get in Touch</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Let Me Design Hub</h2>
+    <p>
+      We specialize in turning dreams into reality by crafting bespoke interiors that blend functionality with aesthetics. With over 10 years of excellence in interior design, we transform spaces across residential, commercial, and workspace domains.
+    </p>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>Residential Spaces</h3>
+        <p>Personalized design solutions for your home</p>
+      </div>
+      <div class="service-card">
+        <h3>Commercial Interiors</h3>
+        <p>Innovative workspace and office designs</p>
+      </div>
+      <div class="service-card">
+        <h3>Custom Furniture</h3>
+        <p>Bespoke furniture tailored to your style</p>
+      </div>
+      <div class="service-card">
+        <h3>3D Visualization</h3>
+        <p>Immersive space planning and design</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <h2>Our Portfolio</h2>
+    <div class="projects">
+      <div class="project-card">
+        <img src="https://via.placeholder.com/400x300?text=Project+1" alt="Project 1">
+        <div class="overlay"><span>Modern Minimalist Home</span></div>
+      </div>
+      <div class="project-card">
+        <img src="https://via.placeholder.com/400x300?text=Project+2" alt="Project 2">
+        <div class="overlay"><span>Luxurious Living Room</span></div>
+      </div>
+      <div class="project-card">
+        <img src="https://via.placeholder.com/400x300?text=Project+3" alt="Project 3">
+        <div class="overlay"><span>Stylish Office Design</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Contact Us</h3>
+    <div class="social-icons">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.querySelector('.mobile-menu');
+      menu.classList.toggle('open');
+    }
+  </script>
+</body>
+
+</html>
