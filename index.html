@@ -388,6 +388,28 @@
       cursor: pointer;
       padding: 5px;
     }
+	
+	 /* Mobile Menu */
+        #mobile-menu {
+            display: none; /* Hidden by default */
+        }
+
+        #mobile-menu.show {
+            display: block; /* Displayed when 'show' class is added */
+        }
+
+        .menu-toggle-button {
+            cursor: pointer;
+        }
+
+        /* Ensure the mobile menu only appears on smaller screens */
+        @media (min-width: 768px) {
+            /* Hide mobile menu toggle button and mobile menu on larger screens */
+            .menu-toggle-button,
+            #mobile-menu {
+                display: none;
+            }
+        }
   </style>
 </head>
 
@@ -414,16 +436,40 @@
             </button>
         </div>
 		
-
-        <!-- Mobile Menu Toggle -->
-        <div class="md:hidden">
-            <button onClick="toggleMobileMenu()" class="text-gray-900">
-                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M2 4a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm14 0H4v12h12V4z" clip-rule="evenodd" />
-                </svg>
-            </button>
+<<!-- Mobile Menu Toggle -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="menu-toggle-button text-gray-900">
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M2 4a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm14 0H4v12h12V4z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
         </div>
-    </div>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobile-menu" class="bg-white shadow-lg">
+            <div class="flex flex-col items-center space-y-4 p-6">
+                <a href="#home" class="w-full text-center py-2">Home</a>
+                <a href="#about" class="w-full text-center py-2">About Us</a>
+                <a href="#portfolio" class="w-full text-center py-2">Portfolio</a>
+                <a href="#services" class="w-full text-center py-2">Services</a>
+                <button onClick="window.open('https://wa.me/+1234567890', '_blank')" class="w-full bg-blue-600 text-white px-4 py-2 rounded-full">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- JavaScript to Toggle Mobile Menu -->
+    <script>
+        const menuToggleButton = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Toggle the mobile menu visibility on mobile screens
+        menuToggleButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('show');
+        });
+    </script>
      <!-- Hero Section -->
   <header id="home" class="hero">
     <div class="image"></div>
